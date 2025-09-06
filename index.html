@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirmação de Presença - Casamento</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Cormorant Garamond', serif;
+        }
+        
+        body {
+            background-color: #f5f8fa; /* Azul bem claro no fundo */
+            color: #3a4a5a; /* Cinza azulado para o texto */
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            padding: 30px 0;
+            border-bottom: 1px solid #d6dee6;
+            margin-bottom: 30px;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            color: #2c5d8a; /* Azul médio para títulos */
+            margin-bottom: 10px;
+            font-weight: normal;
+        }
+        
+        .subtitle {
+            font-style: italic;
+            color: #6f8ba4; /* Azul acinzentado suave */
+            margin-bottom: 20px;
+        }
+        
+        .names {
+            font-size: 1.8rem;
+            letter-spacing: 2px;
+            margin: 15px 0;
+            color: #1e3a5f; /* Azul mais escuro */
+        }
+        
+        .date-location {
+            margin: 20px 0;
+            font-size: 1.2rem;
+            color: #3a4a5a;
+        }
+        
+        .form-section {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            margin-bottom: 30px;
+        }
+        
+        h2 {
+            color: #2c5d8a;
+            margin-bottom: 20px;
+            font-weight: normal;
+            font-size: 1.8rem;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        input[type="text"],
+        input[type="email"],
+        input[type="number"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #d6dee6;
+            border-radius: 4px;
+            font-size: 1rem;
+            transition: border 0.3s;
+        }
+        
+        input:focus,
+        select:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #2c5d8a;
+        }
+        
+        .radio-group {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .radio-option {
+            display: flex;
+            align-items: center;
+        }
+        
+        .radio-option input {
+            margin-right: 8px;
+        }
+        
+        button {
+            background-color: #2c5d8a; /* Botão azul elegante */
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 1.1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        button:hover {
+            background-color: #1e3a5f; /* Azul mais escuro no hover */
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            color: #6f8ba4;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 600px) {
+            .radio-group {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .form-section {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <form id="weddingForm">
+            <div class="form-section">
+                <h2>Informações Pessoais</h2>
+                </div>
+        <form action="https://api.sheetmonkey.io/form/th15sgbzPGuvf8v9mVgMSU" method="post"Add commentMore actions
+                   id="ConviForm" class="form-card" onsubmit="return handleFormSubmit(event)">
+                <form id="form">
+                <div class="form-group">
+                    <label for="name">Nome Completo *</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="phone">Telefone *</label>
+                    <input type="text" id="phone" name="phone" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="guests">Número de Acompanhantes *</label>
+                    <select id="guests" name="guests" required>
+                        <option value="0">Nenhum</option>
+                        <option value="1">1 pessoa</option>
+                        <option value="2">2 pessoas</option>
+                        <option value="3">3 pessoas</option>
+                        <option value="4">4 pessoas</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label>Você confirma presença? *</label>
+                    <div class="radio-group">
+                        <div class="radio-option">
+                            <input type="radio" id="confirm-yes" name="attendance" value="yes" required>
+                            <label for="confirm-yes">Sim, com muita alegria!</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" id="confirm-no" name="attendance" value="no">
+                            <label for="confirm-no">Infelizmente não poderei</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="form-section">
+                <h2>Preferências para a Recepção</h2>
+                
+                <div class="form-group">
+                    <label for="food">Preferência Alimentar *</label>
+                    <select id="food" name="food" required>
+                        <option value="">Selecione uma opção</option>
+                        <option value="normal">Menu padrão</option>
+                        <option value="vegetarian">Vegetariano</option>
+                        <option value="vegan">Vegano</option>
+                        <option value="glutenfree">Sem glúten</option>
+                        <option value="lactosefree">Sem lactose</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="song">Sugestão de música para a festa</label>
+                    <input type="text" id="song" name="song" placeholder="Artista e nome da música">
+                </div>
+            </div>
+            
+            <div class="form-section">
+                <h2>Mensagem para os Noivos</h2>
+                
+                <div class="form-group">
+                    <label for="message">Deixe uma mensagem especial (opcional)</label>
+                    <textarea id="message" name="message" rows="4" placeholder="Escreva aqui sua mensagem de carinho..."></textarea>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <button type="submit">Enviar Confirmação</button>
+            </div>
+        </form>
+        
+        <div class="footer">
+            <p>Obrigado por fazer parte do nosso dia especial!</p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('weddingForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const attendance = document.querySelector('input[name="attendance"]:checked');
+            
+            if (!name || !attendance) {
+                alert('Por favor, preencha todos os campos obrigatórios.');
+                return;
+            }
+            
+            alert('Obrigado por confirmar sua presença! Sua resposta foi registrada.');
+            this.reset();
+        });
+    </script>
+</body>
+</html>
