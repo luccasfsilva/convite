@@ -1,185 +1,215 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Confirmação de Presença</title>
-    <style>
-        body {
-            font-family: "Georgia", serif;
-            background-color: #faf7f5;
-            color: #2c5d8a;
-            margin: 0;
-            padding: 0;
-            text-align: center;
-        }
-
-        .container {
-            max-width: 650px;
-            margin: 40px auto;
-            background: #fff;
-            border: 3px solid #2c5d8a;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
-        }
-
-        h1 {
-            font-size: 28px;
-            margin-bottom: 20px;
-            color: #2c5d8a;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-            text-align: left;
-        }
-
-        label {
-            font-weight: bold;
-            display: block;
-            margin-bottom: 6px;
-            color: #2c5d8a;
-        }
-
-        input, select, textarea {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #2c5d8a;
-            border-radius: 6px;
-            font-size: 16px;
-        }
-
-        textarea {
-            resize: none;
-            height: 80px;
-        }
-
-        button {
-            background-color: #2c5d8a;
-            color: white;
-            font-size: 18px;
-            padding: 12px 24px;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            margin-top: 15px;
-            transition: background 0.3s;
-        }
-
-        button:hover {
-            background-color: #1b3d5a;
-        }
-
-        .footer {
-            margin-top: 25px;
-            font-size: 14px;
-            color: #555;
-        }
-
-        /* Radios na mesma linha */
-        .radio-group {
-            display: flex;
-            gap: 30px;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .radio-group label {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            font-size: 16px;
-            color: #2c5d8a;
-            white-space: nowrap;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Confirmação de Presença - Casamento</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Cormorant Garamond', serif;
+    }
+    body {
+      background-color: #f5f8fa;
+      color: #3a4a5a;
+      line-height: 1.6;
+    }
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    .form-section {
+      background-color: #fff;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      margin-bottom: 30px;
+    }
+    h2 {
+      color: #2c5d8a;
+      margin-bottom: 20px;
+      font-weight: normal;
+      font-size: 1.8rem;
+    }
+    .form-group {
+      margin-bottom: 20px;
+    }
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 500;
+      color: #1e3a5f;
+    }
+    input, select, textarea {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #d6dee6;
+      border-radius: 6px;
+      font-size: 1rem;
+      transition: border 0.3s;
+    }
+    input:focus, select:focus, textarea:focus {
+      outline: none;
+      border-color: #2c5d8a;
+      box-shadow: 0 0 6px rgba(44, 93, 138, 0.3);
+    }
+    .radio-group {
+      display: flex;
+      gap: 20px;
+    }
+    .radio-option {
+      display: flex;
+      align-items: center;
+    }
+    .radio-option input {
+      margin-right: 8px;
+    }
+    button {
+      background-color: #2c5d8a;
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      font-size: 1.1rem;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    button:hover {
+      background-color: #1e3a5f;
+    }
+    .footer {
+      text-align: center;
+      margin-top: 20px;
+      color: #6f8ba4;
+      font-size: 0.9rem;
+    }
+    #thankYouMessage {
+      display: none;
+      text-align: center;
+      margin-top: 50px;
+      background: #ffffff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    #thankYouMessage h2 {
+      color: #2c5d8a;
+      margin-bottom: 15px;
+    }
+    #thankYouMessage p {
+      color: #3a4a5a;
+      font-size: 1.2rem;
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Confirme sua Presença</h1>
+  <div class="container">
 
-        <form id="weddingForm">
-            <div class="form-group">
-                <label for="nome">Nome *</label>
-                <input type="text" id="nome" name="Nome" required>
-            </div>
-
-            <div class="form-group">
-                <label for="telefone">Telefone *</label>
-                <input type="text" id="telefone" name="Telefone" required>
-            </div>
-
-            <div class="form-group">
-                <label for="acompanhantes">Número de Acompanhantes *</label>
-                <select id="acompanhantes" name="Acompanhantes" required>
-                    <option value="Nenhum">Nenhum</option>
-                    <option value="1">1 acompanhante</option>
-                    <option value="2">2 acompanhantes</option>
-                    <option value="3">3 acompanhantes</option>
-                    <option value="4+">4 ou mais</option>
-                </select>
-            </div>
-
-            <div class="form-group">
-                <label>Você confirma presença? *</label>
-                <div class="radio-group">
-                    <label><input type="radio" name="Confirmação" value="Sim, com muita alegria!" required> Sim, com muita alegria!</label>
-                    <label><input type="radio" name="Confirmação" value="Infelizmente não poderei"> Infelizmente não poderei</label>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label for="cardapio">Preferência de Cardápio</label>
-                <input type="text" id="cardapio" name="Cardápio" placeholder="Ex: Vegetariano, Sem glúten, etc.">
-            </div>
-
-            <div class="form-group">
-                <label for="musica">Sugestão de Música</label>
-                <input type="text" id="musica" name="Musica" placeholder="Qual música não pode faltar?">
-            </div>
-
-            <div class="form-group">
-                <label for="mensagem">Mensagem aos Noivos</label>
-                <textarea id="mensagem" name="Mensagem" placeholder="Deixe sua mensagem especial..."></textarea>
-            </div>
-
-            <div class="form-group" style="text-align:center;">
-                <button type="submit">Enviar Confirmação</button>
-            </div>
-        </form>
-
-        <!-- Mensagem de agradecimento -->
-        <div id="thankYouMessage" style="display:none; text-align:center; margin-top:30px;">
-            <h2 style="color:#2c5d8a;">🎉 Obrigado por confirmar presença!</h2>
-            <p>Sua resposta foi registrada com sucesso. Estamos felizes em ter você conosco nesse momento tão especial 💖</p>
+    <form id="weddingForm">
+      <div class="form-section">
+        <h2>Informações Pessoais</h2>
+        <div class="form-group">
+          <label for="nome">Nome Completo *</label>
+          <input type="text" id="nome" name="Nome" required>
         </div>
 
-        <div class="footer">
-            <p>Obrigado por fazer parte do nosso dia especial!</p>
+        <div class="form-group">
+          <label for="telefone">Telefone *</label>
+          <input type="text" id="telefone" name="Telefone" required>
         </div>
+
+        <div class="form-group">
+          <label for="acompanhantes">Número de Acompanhantes *</label>
+          <select id="acompanhantes" name="Acompanhantes" required>
+            <option value="0">Nenhum</option>
+            <option value="1">1 pessoa</option>
+            <option value="2">2 pessoas</option>
+            <option value="3">3 pessoas</option>
+            <option value="4">4 pessoas</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Você confirma presença? *</label>
+          <div class="radio-group">
+            <div class="radio-option">
+              <input type="radio" id="confirm-yes" name="Confirmação" value="Sim" >
+              <label for="confirm-yes">Sim, com muita alegria!</label>
+            <div class="radio-option">
+              <input type="radio" id="confirm-no" name="Confirmação" value="Não">
+              <label for="confirm-no">Infelizmente não poderei</label>
+             </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-section">
+        <h2>Preferências para a Recepção</h2>
+        <div class="form-group">
+          <label for="cardapio">Preferência Alimentar *</label>
+          <select id="cardapio" name="Cardápio" required>
+            <option value="">Selecione uma opção</option>
+            <option value="Normal">Menu padrão</option>
+            <option value="Vegetariano">Vegetariano</option>
+            <option value="Vegano">Vegano</option>
+            <option value="Sem glúten">Sem glúten</option>
+            <option value="Sem lactose">Sem lactose</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="musica">Sugestão de música para a festa</label>
+          <input type="text" id="musica" name="Musica" placeholder="Artista e nome da música">
+        </div>
+      </div>
+
+      <div class="form-section">
+        <h2>Mensagem para os Noivos</h2>
+        <div class="form-group">
+          <label for="mensagem">Deixe uma mensagem especial (opcional)</label>
+          <textarea id="mensagem" name="Mensagem" rows="4" placeholder="Escreva aqui sua mensagem de carinho..."></textarea>
+        </div>
+      </div>
+
+      <div class="form-group" style="text-align:center;">
+        <button type="submit">Enviar Confirmação</button>
+      </div>
+    </form>
+
+    <div id="thankYouMessage">
+      <h2>🎉 Obrigado por confirmar presença!</h2>
+      <p>Sua resposta foi registrada com sucesso.<br>Estamos muito felizes em ter você conosco nesse momento tão especial 💖</p>
     </div>
 
-    <script>
-        const form = document.getElementById("weddingForm");
-        const thankYouMessage = document.getElementById("thankYouMessage");
+    <div class="footer">
+      <p>Obrigado por fazer parte do nosso dia especial!</p>
+    </div>
+  </div>
 
-        form.addEventListener("submit", function(event){
-            event.preventDefault(); 
-            const data = new FormData(form);
+  <script>
+    const form = document.getElementById("weddingForm");
+    const thankYouMessage = document.getElementById("thankYouMessage");
 
-            fetch("https://api.sheetmonkey.io/form/th15sgbzPGuvf8v9mVgMSU", {
-                method: "POST",
-                body: data
-            }).then(response => {
-                if(response.ok){
-                    form.style.display = "none"; 
-                    thankYouMessage.style.display = "block"; 
-                } else {
-                    alert("Ocorreu um erro. Tente novamente.");
-                }
-            });
-        });
-    </script>
+    form.addEventListener("submit", function(event){
+      event.preventDefault();
+      const data = new FormData(form);
+
+      fetch("https://api.sheetmonkey.io/form/th15sgbzPGuvf8v9mVgMSU", {
+        method: "POST",
+        body: data
+      }).then(response => {
+        if(response.ok){
+          form.style.display = "none";
+          thankYouMessage.style.display = "block";
+        } else {
+          alert("Ocorreu um erro. Tente novamente.");
+        }
+      });
+    });
+  </script>
 </body>
 </html>
