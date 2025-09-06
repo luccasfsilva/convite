@@ -13,8 +13,8 @@
         }
         
         body {
-            background-color: #f5f8fa; /* Fundo azul claro */
-            color: #3a4a5a; /* Texto cinza azulado */
+            background-color: #f5f8fa;
+            color: #3a4a5a;
             line-height: 1.6;
         }
         
@@ -125,6 +125,27 @@
             color: #6f8ba4;
             font-size: 0.9rem;
         }
+
+        /* Mensagem de agradecimento */
+        #thankYouMessage {
+            display: none;
+            text-align: center;
+            margin-top: 50px;
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        #thankYouMessage h2 {
+            color: #2c5d8a;
+            margin-bottom: 15px;
+        }
+
+        #thankYouMessage p {
+            color: #3a4a5a;
+            font-size: 1.2rem;
+        }
         
         @media (max-width: 600px) {
             .radio-group {
@@ -140,23 +161,25 @@
 </head>
 <body>
     <div class="container">
-        <form action="https://api.sheetmonkey.io/form/th15sgbzPGuvf8v9mVgMSU" method="post" id="weddingForm">
+
+        <!-- Formulário -->
+        <form id="weddingForm">
             
             <div class="form-section">
                 <h2>Informações Pessoais</h2>
                 <div class="form-group">
                     <label for="name">Nome Completo *</label>
-                    <input type="text" id="name" name="nome" required>
+                    <input type="text" id="name" name="name" required>
                 </div>
                 
                 <div class="form-group">
                     <label for="phone">Telefone *</label>
-                    <input type="text" id="phone" name="Telefone" required>
+                    <input type="text" id="phone" name="phone" required>
                 </div>
                 
                 <div class="form-group">
                     <label for="guests">Número de Acompanhantes *</label>
-                    <select id="guests" name="Acompanhantes" required>
+                    <select id="guests" name="guests" required>
                         <option value="0">Nenhum</option>
                         <option value="1">1 pessoa</option>
                         <option value="2">2 pessoas</option>
@@ -169,11 +192,11 @@
                     <label>Você confirma presença? *</label>
                     <div class="radio-group">
                         <div class="radio-option">
-                            <input type="radio" id="confirm-yes" name="Presença" value="Sim" required>
+                            <input type="radio" id="confirm-yes" name="attendance" value="Sim" required>
                             <label for="confirm-yes">Sim, com muita alegria!</label>
                         </div>
                         <div class="radio-option">
-                            <input type="radio" id="confirm-no" name="Presença" value="Não">
+                            <input type="radio" id="confirm-no" name="attendance" value="Não">
                             <label for="confirm-no">Infelizmente não poderei</label>
                         </div>
                     </div>
@@ -184,7 +207,7 @@
                 <h2>Preferências para a Recepção</h2>
                 <div class="form-group">
                     <label for="food">Preferência Alimentar *</label>
-                    <select id="food" name="Comida" required>
+                    <select id="food" name="food" required>
                         <option value="">Selecione uma opção</option>
                         <option value="normal">Menu padrão</option>
                         <option value="vegetarian">Vegetariano</option>
@@ -196,7 +219,7 @@
                 
                 <div class="form-group">
                     <label for="song">Sugestão de música para a festa</label>
-                    <input type="text" id="song" name="Musica" placeholder="Artista e nome da música">
+                    <input type="text" id="song" name="song" placeholder="Artista e nome da música">
                 </div>
             </div>
             
@@ -204,7 +227,7 @@
                 <h2>Mensagem para os Noivos</h2>
                 <div class="form-group">
                     <label for="message">Deixe uma mensagem especial (opcional)</label>
-                    <textarea id="message" name="Mensagem" rows="4" placeholder="Escreva aqui sua mensagem de carinho..."></textarea>
+                    <textarea id="message" name="message" rows="4" placeholder="Escreva aqui sua mensagem de carinho..."></textarea>
                 </div>
             </div>
             
@@ -213,9 +236,37 @@
             </div>
         </form>
         
+        <!-- Mensagem de agradecimento -->
+        <div id="thankYouMessage">
+            <h2>🎉 Obrigado por confirmar presença!</h2>
+            <p>Sua resposta foi registrada com sucesso.<br>Estamos muito felizes em ter você conosco nesse momento tão especial 💖</p>
+        </div>
+        
         <div class="footer">
             <p>Obrigado por fazer parte do nosso dia especial!</p>
         </div>
     </div>
+
+    <script>
+        const form = document.getElementById("weddingForm");
+        const thankYouMessage = document.getElementById("thankYouMessage");
+
+        form.addEventListener("submit", function(event){
+            event.preventDefault(); // Evita o redirecionamento
+            const data = new FormData(form);
+
+            fetch("https://api.sheetmonkey.io/form/th15sgbzPGuvf8v9mVgMSU", {
+                method: "POST",
+                body: data
+            }).then(response => {
+                if(response.ok){
+                    form.style.display = "none"; // Esconde o formulário
+                    thankYouMessage.style.display = "block"; // Mostra a mensagem
+                } else {
+                    alert("Ocorreu um erro. Tente novamente.");
+                }
+            });
+        });
+    </script>
 </body>
 </html>
